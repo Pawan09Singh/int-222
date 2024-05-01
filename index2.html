@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>E-Commerce Site</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- Adding custom CSS for additional styling -->
+  <style>
+    body { padding-top: 65px; }
+    .highlight { background-color: yellow; }
+    .product-img { height: 150px; object-fit: contain; }
+    .category-selection { position: fixed; width: 20%; }
+    .product-grid { margin-left: 22%; }
+    footer { background: #343a40; color: #fff; padding: 20px 0; }
+    footer a { color: rgba(255,255,255,.5); }
+    footer a:hover { color: rgba(255,255,255,.75); }
+    /* Add more CSS for animations and stylish elements */
+  </style>
+</head>
+<body>
+  
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">E-Commerce Site</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#" onclick="filterProducts('all')">All Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="filterProducts('electronics')">Electronics</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="filterProducts('fashion')">Fashion</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="filterProducts('grocery')">Grocery</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="searchItem">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="filterBySearch()">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 category-selection">
+      <h5>Categories</h5>
+      <ul class="list-group">
+        <li class="list-group-item"><a href="#" onclick="filterProducts('electronics')">Electronics</a></li>
+        <li class="list-group-item"><a href="#" onclick="filterProducts('fashion')">Fashion</a></li>
+        <li class="list-group-item"><a href="#" onclick="filterProducts('grocery')">Grocery</a></li>
+        <!-- More categories -->
+      </ul>
+    </div>
+    <div class="col-md-9 product-grid">
+      <div class="row" id="productContainer">
+        <!-- Generate 24 items with a loop or manually -->
+        <!-- Here we manually add one for demonstration; replicate as needed -->
+        <div class="col-md-3 mb-4 product" data-category="electronics">
+          <br>
+          <div class="card">
+            <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+            <div class="card-body">
+              <h5 class="card-title product-name">Product 5</h5>
+              <p class="card-text">$19.99</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4 product" data-category="fashion">
+          <br>
+          <div class="card">
+            <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+            <div class="card-body">
+              <h5 class="card-title product-name">Product 1</h5>
+              <p class="card-text">$19.99</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4 product" data-category="electronics">
+          <br>
+          <div class="card">
+            <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+            <div class="card-body">
+              <h5 class="card-title product-name">Product 1</h5>
+              <p class="card-text">$19.99</p>
+            </div>
+          </div>
+        </div>
+        <!-- Repeat for other products -->
+        <div class="col-md-3 mb-4 product" data-category="electronics">
+          <br>
+          <div class="card">
+            <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+            <div class="card-body">
+              <h5 class="card-title product-name">Product 1</h5>
+              <p class="card-text">$19.99</p>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- -- -->
+        <div class="row" id="productContainer">
+          <!-- Generate 24 items with a loop or manually -->
+          <!-- Here we manually add one for demonstration; replicate as needed -->
+          <div class="col-md-3 mb-4 product" data-category="electronics">
+            <br>
+            <div class="card">
+              <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+              <div class="card-body">
+                <h5 class="card-title product-name">Product 5</h5>
+                <p class="card-text">$19.99</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-4 product" data-category="fashion">
+            <br>
+            <div class="card">
+              <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+              <div class="card-body">
+                <h5 class="card-title product-name">Product 1</h5>
+                <p class="card-text">$19.99</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 mb-4 product" data-category="electronics">
+            <br>
+            <div class="card">
+              <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+              <div class="card-body">
+                <h5 class="card-title product-name">Product 1</h5>
+                <p class="card-text">$19.99</p>
+              </div>
+            </div>
+          </div>
+          <!-- Repeat for other products -->
+          <div class="col-md-3 mb-4 product" data-category="electronics">
+            <br>
+            <div class="card">
+              <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+              <div class="card-body">
+                <h5 class="card-title product-name">Product 1</h5>
+                <p class="card-text">$19.99</p>
+              </div>
+            </div>
+          </div>
+        <!-- -- -->
+        
+    </div>
+    <div class="row" id="productContainer">
+      <!-- Generate 24 items with a loop or manually -->
+      <!-- Here we manually add one for demonstration; replicate as needed -->
+      <div class="col-md-3 mb-4 product" data-category="electronics">
+        <br>
+        <div class="card">
+          <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+          <div class="card-body">
+            <h5 class="card-title product-name">Product 5</h5>
+            <p class="card-text">$19.99</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4 product" data-category="fashion">
+        <br>
+        <div class="card">
+          <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+          <div class="card-body">
+            <h5 class="card-title product-name">Product 1</h5>
+            <p class="card-text">$19.99</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 mb-4 product" data-category="electronics">
+        <br>
+        <div class="card">
+          <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+          <div class="card-body">
+            <h5 class="card-title product-name">Product 1</h5>
+            <p class="card-text">$19.99</p>
+          </div>
+        </div>
+      </div>
+      <!-- Repeat for other products -->
+      <div class="col-md-3 mb-4 product" data-category="electronics">
+        <br>
+        <div class="card">
+          <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+          <div class="card-body">
+            <h5 class="card-title product-name">Product 1</h5>
+            <p class="card-text">$19.99</p>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+  <div class="row" id="productContainer">
+    <!-- Generate 24 items with a loop or manually -->
+    <!-- Here we manually add one for demonstration; replicate as needed -->
+    <div class="col-md-3 mb-4 product" data-category="electronics">
+      <br>
+      <div class="card">
+        <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+        <div class="card-body">
+          <h5 class="card-title product-name">Product 5</h5>
+          <p class="card-text">$19.99</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-4 product" data-category="fashion">
+      <br>
+      <div class="card">
+        <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+        <div class="card-body">
+          <h5 class="card-title product-name">Product 1</h5>
+          <p class="card-text">$19.99</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 mb-4 product" data-category="electronics">
+      <br>
+      <div class="card">
+        <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+        <div class="card-body">
+          <h5 class="card-title product-name">Product 1</h5>
+          <p class="card-text">$19.99</p>
+        </div>
+      </div>
+    </div>
+    <!-- Repeat for other products -->
+    <div class="col-md-3 mb-4 product" data-category="electronics">
+      <br>
+      <div class="card">
+        <img class="card-img-top product-img" src="placeholder.jpg" alt="Product">
+        <div class="card-body">
+          <h5 class="card-title product-name">Product 1</h5>
+          <p class="card-text">$19.99</p>
+        </div>
+      </div>
+      
+    </div>
+    
+    
+      
+    </div>
+    
+</div>
+
+<footer>
+  <div class="container text-center">
+    <small>©2024 E-Commerce Site - A Project by [Your Name]. All Rights Reserved.</small>
+  </div>
+</footer>
+
+<!-- Bootstrap JS and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+  // Function to filter products based on category
+  function filterProducts(category) {
+    var products = document.querySelectorAll('.product');
+    
+    products.forEach(function(product) {
+      var categoryClass = product.dataset.category;
+      
+      if (category === 'all' || categoryClass === category) {
+        product.style.display = 'block';
+      } else {
+        product.style.display = 'none';
+      }
+    });
+  }
+  
+  // Function to filter products based on search query
+  function filterBySearch() {
+    var searchText = document.getElementById("searchItem").value.toLowerCase();
+    var products = document.querySelectorAll('.product');
+    
+    products.forEach(function(product) {
+      var productName = product.querySelector('.product-name').textContent.toLowerCase();
+      
+      if (productName.includes(searchText)) {
+        product.style.display = 'block';
+      } else {
+        product.style.display = 'none';
+      }
+    });
+  }
+
+  
+</script>
+</body>
+</html>

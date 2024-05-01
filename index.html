@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap E-Commerce Website</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+  <style>
+    *{
+      padding:0px;
+      margin:0px;
+    }
+    /* Custom styles */
+    .card {
+      border: none;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+    }
+
+    .card-img-top {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* Style for category selection */
+    .category-selection {
+      background-color: #f8f9fa;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">E-commerce</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Deals</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input id="searchInput" class="form-control mr-sm-2" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="cart.html">Cart</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="account.html">Account</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <div class="row">
+      <!-- Category selection column -->
+      <div class="col-md-3 mb-4">
+        <div class="category-selection">
+          <h5>Select Category</h5>
+          <!-- Example category selection options -->
+          <ul id="categoryList" class="list-unstyled">
+            <li><a href="#" onclick="showProducts(0)">All Products</a></li>
+            <li><a href="#" onclick="showProducts(1)">Category 1</a></li>
+            <li><a href="#" onclick="showProducts(2)">Category 2</a></li>
+            <li><a href="#" onclick="showProducts(3)">Category 3</a></li>
+            <li><a href="#" onclick="showProducts(4)">Category 4</a></li>
+          </ul>
+        </div>
+      </div>
+      <!-- Product display column -->
+      <div class="col-md-9" id="productDisplay">
+        <!-- Product cards will be displayed here dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <footer class="bg-dark text-light pt-4 pb-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Shop</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Information</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Shipping Information</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5>Follow Us</h5>
+                <ul class="list-inline">
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li class="list-inline-item"><a href="#"><i class="fab fa-instagram"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+  <!-- Bootstrap JS and jQuery -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <script>
+    function showProducts(category) {
+      // Clear previous product display
+      document.getElementById("productDisplay").innerHTML = "";
+
+      // Calculate product range based on category
+      let start = (category - 1) * 6 + 1;
+      let end = category === 0 ? 24 : category * 6;
+
+      // Create product cards dynamically
+      let rowDiv = document.createElement("div");
+      rowDiv.className = "row";
+      for (let i = start; i <= end; i++) {
+        if ((i - 1) % 4 === 0) {
+          document.getElementById("productDisplay").appendChild(rowDiv);
+          rowDiv = document.createElement("div");
+          rowDiv.className = "row";
+        }
+        let card = `
+          <div class="col-md-3 mb-4">
+            <div class="card">
+              <img src="img${i}.jpg" class="card-img-top" alt="Product ${i}">
+              <div class="card-body">
+                <h5 class="card-title">Product ${i}</h5>
+                <p class="card-text">Price: $${(i * 5).toFixed(2)}</p>
+              </div>
+            </div>
+          </div>`;
+        rowDiv.innerHTML += card;
+      }
+      document.getElementById("productDisplay").appendChild(rowDiv);
+    }
+
+    // Initially show all products
+    showProducts(0);
+
+    // Highlight search results
+    document.getElementById("searchInput").addEventListener("input", function() {
+      let searchInput = this.value.toLowerCase();
+      let cards = document.querySelectorAll(".card-title");
+      cards.forEach(card => {
+        if (card.textContent.toLowerCase().includes(searchInput)) {
+          card.parentElement.parentElement.style.backgroundColor = "yellow";
+        } else {
+          card.parentElement.parentElement.style.backgroundColor = "transparent";
+        }
+      });
+    });
+  </script>
+</body>
+</html>
